@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="CE-3.3.1"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd 
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd ">
+	<flow name="EchoFlow" doc:name="EchoFlow">
+		<http:inbound-endpoint exchange-pattern="request-response"
+			host="localhost" port="8084" doc:name="HTTP"
+			doc:description="Process HTTP requests or responses." />
+		<flow-ref name="flowFlow2" doc:name="Flow Reference" />
+		<flow-ref name="flowFlow2" doc:name="Flow Reference" />
+	</flow>
+	<flow name="flowFlow2" doc:name="flowFlow2">
+		<echo-component doc:name="Echo" />
+        <logger message="About to echo #[message:payload]" level="INFO"
+			doc:name="Logger" />
+	</flow>
+</mule>
